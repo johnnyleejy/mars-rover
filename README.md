@@ -32,4 +32,4 @@ This is a simple springboot application that allows you to deploy and command yo
 
 ## Test cases: 
 
-Refer to `MarsRoverServiceTests` for all the written test cases
+Refer to [`MarsRoverServiceTests.java`](https://github.com/johnnyleejy/mars-rover/blob/master/src/test/java/com/project/marsrover/MarsRoverServiceTests.java) for all the written test cases
