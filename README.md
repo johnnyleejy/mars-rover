@@ -4,6 +4,12 @@
 
 This is a simple springboot application that allows you to deploy and command your rover on mars. You can use it via REST POST request or via the CLI itself. Examples are provided below.
 
+## Assumptions made
+1. The assumed size of mars is (99,99)
+2. Rovers are not allows to move out of mar's boundary, coordinates < 0 or coordinates > 99.
+3. You can deploy multiple rovers
+4. Rovers will stop and end further commands if the next command results in collision
+
 ## Sample command:
 
 `xCoordinate,yCoordinate,DIRECTION <SPACE> f,f,f`
