@@ -9,6 +9,7 @@ This is a simple springboot application that allows you to deploy and command yo
 2. Rovers are not allows to move out of mar's boundary, coordinates < 0 or coordinates > 99.
 3. You can deploy multiple rovers
 4. Rovers will stop and end further commands if the next command results in collision
+5. Other assumptions can be found in the written test cases
 
 ## Sample command:
 
