@@ -44,46 +44,39 @@ public class Rover {
      * Turns the rover and updates its direction based on current direction and input command
      *
      * @param command The turn command for the rover
+     * @throws DeployRoverException if the provided direction is invalid
      */
     public void turn(Command command) throws DeployRoverException {
         switch (this.getDirection()) {
-            case NORTH: {
+            case NORTH -> {
                 if (command == Command.LEFT) {
                     this.setDirection(Direction.WEST);
-                }
-                else {
+                } else {
                     this.setDirection(Direction.EAST);
                 }
-                break;
             }
-            case SOUTH: {
+            case SOUTH -> {
                 if (command == Command.LEFT) {
                     this.setDirection(Direction.EAST);
-                }
-                else {
+                } else {
                     this.setDirection(Direction.WEST);
                 }
-                break;
             }
-            case EAST: {
+            case EAST -> {
                 if (command == Command.LEFT) {
                     this.setDirection(Direction.NORTH);
-                }
-                else {
+                } else {
                     this.setDirection(Direction.SOUTH);
                 }
-                break;
             }
-            case WEST: {
+            case WEST -> {
                 if (command == Command.LEFT) {
                     this.setDirection(Direction.SOUTH);
-                }
-                else {
+                } else {
                     this.setDirection(Direction.NORTH);
                 }
-                break;
             }
-            default: throw new DeployRoverException("Invalid state");
+            default -> throw new DeployRoverException("Invalid state");
         }
     }
 
@@ -92,46 +85,40 @@ public class Rover {
      *
      * @param command The turn command for the rover
      * @param mars The 2d Mars object holding the state of other existing rovers
+     * @throws DeployRoverException if the provided direction is invalid
+     * @throws CollisionException if the rover collides with another existing rover on Mars
      */
     public void move(Command command, int[][] mars) throws DeployRoverException, CollisionException {
         switch (this.getDirection()) {
-            case NORTH: {
+            case NORTH -> {
                 if (command == Command.FORWARD) {
                     this.updateCoordinates(mars, this.getxCoordinate() + 1, this.getyCoordinate());
-                }
-                else {
+                } else {
                     this.updateCoordinates(mars, this.getxCoordinate() - 1, this.getyCoordinate());
                 }
-                break;
             }
-            case SOUTH: {
+            case SOUTH -> {
                 if (command == Command.FORWARD) {
                     this.updateCoordinates(mars, this.getxCoordinate() - 1, this.getyCoordinate());
-                }
-                else {
+                } else {
                     this.updateCoordinates(mars, this.getxCoordinate() + 1, this.getyCoordinate());
                 }
-                break;
             }
-            case EAST: {
+            case EAST -> {
                 if (command == Command.FORWARD) {
                     this.updateCoordinates(mars, this.getxCoordinate(), this.getyCoordinate() + 1);
-                }
-                else {
+                } else {
                     this.updateCoordinates(mars, this.getxCoordinate(), this.getyCoordinate() - 1);
                 }
-                break;
             }
-            case WEST: {
+            case WEST -> {
                 if (command == Command.FORWARD) {
                     this.updateCoordinates(mars, this.getxCoordinate(), this.getyCoordinate() - 1);
-                }
-                else {
+                } else {
                     this.updateCoordinates(mars, this.getxCoordinate(), this.getyCoordinate() + 1);
                 }
-                break;
             }
-            default: throw new DeployRoverException("Invalid state");
+            default -> throw new DeployRoverException("Invalid state");
         }
     }
 
@@ -141,8 +128,8 @@ public class Rover {
      * @param mars The 2d Mars object holding the state of other existing rovers
      * @param xCoordinate The xCoordinate to be updated to
      * @param yCoordinate The yCoordinate to be updated to
-     * @throws CollisionException If the rover collides with another existing rover on Mars
-     * @throws DeployRoverException If the rover moves out of Mars boundary
+     * @throws CollisionException if the rover collides with another existing rover on Mars
+     * @throws DeployRoverException if the rover moves out of Mars boundary
      */
     public void updateCoordinates(int[][] mars, int xCoordinate, int yCoordinate) throws CollisionException, DeployRoverException {
         if (xCoordinate >= 99 || yCoordinate >= 99 || xCoordinate < 0 || yCoordinate < 0) {

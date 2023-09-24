@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 public class MarsRoverService {
     // Use a 2d array as an in memory solution to keep track of which coordinates are taken
     // Assume Mars has a fixed coordinates of 99, 99
-    public int[][] mars = new int[99][99];
+    public final int[][] mars = new int[99][99];
 
     /**
      * Deploys the rover based on input coordinates and direction and moves it according to input commands
      *
      * @param deployRoverParams The deployment params passed in by the client
-     * @throws DeployRoverException
+     * @throws DeployRoverException if the rover is deployed with invalid params
      */
     public DeployRoverResult deployRover(DeployRoverParams deployRoverParams) throws DeployRoverException {
         Rover rover = null;
@@ -31,7 +31,6 @@ public class MarsRoverService {
             // 1. Check if deployed coordinates clash with another rover
             int xCoordinate = Integer.parseInt(coordinates[0]);
             int yCoordinate = Integer.parseInt(coordinates[1]);
-            String directionParams = coordinates[2];
             if (xCoordinate >= 99 || yCoordinate >= 99 || xCoordinate < 0 || yCoordinate < 0) {
                 throw new DeployRoverException("Out of Mars boundary.");
             }
